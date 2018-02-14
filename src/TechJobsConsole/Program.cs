@@ -36,6 +36,7 @@ namespace TechJobsConsole
 
                     if (columnChoice.Equals("all"))
                     {
+                        //PrintJobs needs to loop through dictinary items
                         PrintJobs(JobData.FindAll());
                     }
                     else
@@ -63,11 +64,16 @@ namespace TechJobsConsole
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        Console.WriteLine("Yo.");
+                        // Put the FindByValue reference here...
+                        searchResults = JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
+
                     }
                     else
                     {
                         searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                                               
                         PrintJobs(searchResults);
                     }
                 }
@@ -118,7 +124,20 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("printJobs is not implemented yet");
+            //Console.WriteLine("printJobs is not implemented yet");
+
+            foreach (Dictionary<string, string> moarJobs in someJobs)
+            {
+                foreach (KeyValuePair<string, string> things_1_and_2 in moarJobs)
+                {
+                    string thing_1 = things_1_and_2.Key;
+
+                    string thing_2 = things_1_and_2.Value;
+                    Console.WriteLine(thing_1 +": "+thing_2);
+
+                }
+                Console.WriteLine("****************");
+            }
         }
     }
 }
