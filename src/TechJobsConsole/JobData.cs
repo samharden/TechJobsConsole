@@ -52,23 +52,23 @@ namespace TechJobsConsole
             {
                 foreach (KeyValuePair<string, string> element in row)
                 {
-                    Regex r = new Regex(element.Value, RegexOptions.IgnoreCase);
-                    if (r.IsMatch(value))
+                    //Regex r = new Regex(element.Value, RegexOptions.IgnoreCase);
+                    Regex r = new Regex(value, RegexOptions.IgnoreCase);
+                    string aValue = element.ToString();
+
+                    //if (r.IsMatch(value))
+                    if (r.IsMatch(aValue))
                     {
                         jobs.Add(row);
                     }
-
-
                 }
 
 
-                //if (row.ContainsValue(value))
 
-                //{
-                //    System.Console.WriteLine(value);
-                //    jobs.Add(row);
-                //}
-
+            }
+            if (jobs.Count == 0)
+            {
+                System.Console.WriteLine("NO RESULTS");
             }
 
             return jobs;
@@ -86,12 +86,25 @@ namespace TechJobsConsole
             {
                 string aValue = row[column];
 
-                if (aValue.Contains(value))
+                Regex r = new Regex(value, RegexOptions.IgnoreCase);
+
+
+                //if (r.IsMatch(value))
+                if (r.IsMatch(aValue))
                 {
                     jobs.Add(row);
                 }
-            }
 
+                //if (aValue.Contains(value))
+                //{
+                //    jobs.Add(row);
+                //}
+
+            }
+            if (jobs.Count == 0)
+            {
+                System.Console.WriteLine("NO RESULTS");
+            }
             return jobs;
         }
 
